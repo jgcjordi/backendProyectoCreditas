@@ -196,7 +196,7 @@ class PhoneServiceImpl : IPhoneService {
         colorPhoneDao.save(color29)
         colorPhoneDao.save(color30)
 
-        val phone11 = Phone(null, "Xiaomi", "Mi 9T", "https://cdn-files.kimovil.com/phone_front/0002/33/thumb_132829_phone_front_big.jpeg", "Datos sobre Xiaomi Mi 9T asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asdf asdf asdf asdfasdf  asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asasd fasdf asdfasdfas dfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdf", listOf(), listOf())
+        val phone11 = Phone(null, "Xiaomi", "Mi 9T", "https://cdn.phonehouse.es/res/products-image/3/7/7/5/7/377575-2221824.jpg", "Datos sobre Xiaomi Mi 9T asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asdf asdf asdf asdfasdf  asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asasd fasdf asdfasdfas dfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdf", listOf(), listOf())
         phoneDao.save(phone11)
         val version19 = VersionPhone(null, 254F, 6, 64, phone11)
         val version20 = VersionPhone(null, 280F, 6, 128, phone11)
@@ -209,7 +209,7 @@ class PhoneServiceImpl : IPhoneService {
         colorPhoneDao.save(color32)
         colorPhoneDao.save(color33)
 
-        val phone12 = Phone(null, "Xiaomi", "Redmi Note 8 Pro", "https://cdn-files.kimovil.com/phone_front/0002/33/thumb_132829_phone_front_big.jpeg", "Datos sobre Xiaomi Mi 9T asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asdf asdf asdf asdfasdf  asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asasd fasdf asdfasdfas dfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdf", listOf(), listOf())
+        val phone12 = Phone(null, "Xiaomi", "Redmi Note 8 Pro", "https://cdn.phonehouse.es/res/products-image/4/2/3/5/5/423559-2321066.jpg", "Datos sobre Redmi Note 8 Pro asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asdf asdf asdf asdfasdf  asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asasd fasdf asdfasdfas dfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdf", listOf(), listOf())
         phoneDao.save(phone12)
         val version21 = VersionPhone(null, 209F, 6, 64, phone12)
         val version22 = VersionPhone(null, 228F, 6, 128, phone12)

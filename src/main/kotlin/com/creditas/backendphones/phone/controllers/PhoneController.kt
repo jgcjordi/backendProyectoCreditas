@@ -13,7 +13,7 @@ import java.util.*
 @RequestMapping("api/v1/phone")
 class PhoneController {
 
-    private val LOGGER = LogFactory.getLog("PhonesController.class")
+    private val LOGGER = LogFactory.getLog("PhoneController.class")
 
     @Autowired
     private lateinit var phoneService: IPhoneService
@@ -44,7 +44,7 @@ class PhoneController {
     //http://localhost:8080/api/v1/phone/exampledata
     @GetMapping("/exampledata")
     fun setPhones():ResponseEntity<Unit>{
-        LOGGER.warn("Begin exampledata")
+        LOGGER.warn("Begin Phones exampledata")
         phoneService.setPhonesExample()
         return ResponseEntity(HttpStatus.OK)
     }
