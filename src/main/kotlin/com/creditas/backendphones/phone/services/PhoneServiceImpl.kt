@@ -10,6 +10,7 @@ import org.apache.juli.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 
 @Service
@@ -26,10 +27,10 @@ class PhoneServiceImpl : IPhoneService {
     private val LOGGER = LogFactory.getLog("PhoneServiceImpl.class")
 
     //@Transactional(readOnly = true)//Se le puede indicar que solo es de lectura
-    override fun getPhones(): MutableList<Phone> {
-        val aux = phoneDao.findAll() as MutableList<Phone>
-        return aux
-    }
+    override fun getAllPhones(): MutableList<Phone> = phoneDao.findAll() as MutableList<Phone>
+
+    override fun getPhoneById(id: Int): Optional<Phone> = phoneDao.findById(id)
+
 
     override fun setPhonesExample() {
         val phone1 = Phone(null, "Apple", "Iphone X", "https://cdn.phonehouse.es/res/product450/resource_350051.jpg", "Datos sobre IPhone X asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asdf asdf asdf asdfasdf  asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asasd fasdf asdfasdfas dfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdf", listOf(), listOf())
