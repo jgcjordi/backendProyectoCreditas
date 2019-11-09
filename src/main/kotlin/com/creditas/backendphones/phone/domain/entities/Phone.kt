@@ -15,8 +15,9 @@ data class Phone(
         val id_phone: Int?,
         val brand:String?,
         val model: String?,
-        val data: String?,
         val src: String?,
+        @Lob
+        val data: String?,
         @JsonManagedReference
         @OneToMany(mappedBy = "phone_model", cascade = [CascadeType.ALL])
         var versions: List<VersionPhone>?,
