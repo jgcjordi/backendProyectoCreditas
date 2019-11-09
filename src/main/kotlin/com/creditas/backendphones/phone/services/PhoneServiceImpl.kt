@@ -31,6 +31,42 @@ class PhoneServiceImpl : IPhoneService {
 
     override fun getPhoneById(id: Int): Optional<Phone> = phoneDao.findById(id)
 
+    override fun phonesFilteredByKeywords(stringFilter: String): MutableList<Phone> {
+        val phones = phoneDao.findAll() as MutableList<Phone>
+        val listKeywords: MutableList<String> = stringFilter.split(" ").toMutableList()
+        for (i in listKeywords) listKeywords[listKeywords.indexOf(i)] = i.toLowerCase()
+
+        val phonesFiltered = mutableListOf<Phone>()
+
+        //Busqueda especifica con todas las palabras
+        for (p in phones) {
+            var add = true
+            for (l in listKeywords) {
+                if (!p.brand!!.toLowerCase().contains(l) &&
+                        !p.model!!.toLowerCase().contains(l)) {
+                    add = false
+                }
+            }
+            if (add) phonesFiltered.add(p)
+        }
+
+        //Si no encuentra ningun resultado con la anterior busqueda, busqueda con almenos una palabra
+        if (phonesFiltered.isEmpty()) {
+            for (p in phones) {
+                for (l in listKeywords) {
+                    if (p.brand!!.toLowerCase().contains(l) ||
+                            p.model!!.toLowerCase().contains(l)) {
+                        phonesFiltered.add(p)
+                        break
+                    }
+                }
+            }
+        }
+        return phonesFiltered
+    }
+
+
+
 
     override fun setPhonesExample() {
         val phone1 = Phone(null, "Apple", "Iphone X", "https://cdn.phonehouse.es/res/product450/resource_350051.jpg", "Datos sobre IPhone X asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asdf asdf asdf asdfasdf  asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdfasdf asd fasdf asdf asdf asdf asdf asdf asasd fasdf asdfasdfas dfasdf asd fasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdf", listOf(), listOf())

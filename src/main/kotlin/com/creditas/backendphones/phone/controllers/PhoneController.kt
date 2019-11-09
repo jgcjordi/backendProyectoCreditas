@@ -31,6 +31,15 @@ class PhoneController {
     @GetMapping("/{id}")
     fun getPhoneById(@PathVariable id: Int): Optional<Phone> = phoneService.getPhoneById(id)
 
+    //http://localhost:8080/api/v1/phone/phones?search=Motorola+Iphone
+    @CrossOrigin(origins = ["http://localhost:3000"])
+    @GetMapping("/phones")
+    fun getPhonesFilteredByKeywords(@RequestParam(value = "search", defaultValue = "") string: String): MutableList<Phone> {
+        LOGGER.info(string)
+        return phoneService.phonesFilteredByKeywords(string)
+    }
+
+
 
     //http://localhost:8080/api/v1/phone/exampledata
     @GetMapping("/exampledata")

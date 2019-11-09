@@ -7,6 +7,7 @@ interface IPhoneService {
 
     fun getAllPhones():MutableList<Phone>
     fun getPhoneById(id: Int): Optional<Phone>
+    fun phonesFilteredByKeywords(stringFilter: String):MutableList<Phone>
     fun setPhonesExample()
 
 }
