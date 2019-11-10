@@ -27,6 +27,15 @@ class UserServiceImpl : IUserService {
 
     override fun getUserByEmail(email:String):User = userDao.findByEmail(email)
 
+    override fun purchasePhone(idUser:Int, idPhone: Int, idVersion: Int, idColor: Int):User {
+        val user = userDao.findById(idUser).get()
+        user.idLastPhonePurchased = idPhone
+        user.idLastPhonePurchasedVersion = idVersion
+        user.idLastPhonePurchasedColor = idColor
+        userDao.save(user)
+        return userDao.findById(idUser).get()
+    }
+
 
     override fun setUsersExample() {
         val user1 = User(null, "jgc.jordi@gmail.com", "Jordi Gomis", "password1", -1, -1, -1)

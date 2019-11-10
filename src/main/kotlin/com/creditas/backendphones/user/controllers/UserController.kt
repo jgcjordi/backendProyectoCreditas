@@ -22,17 +22,24 @@ class UserController {
     @CrossOrigin(origins = ["http://localhost:3000"])
     @GetMapping("/{email}/{password}")
     fun tryLogIn(@PathVariable email: String, @PathVariable password: String): ResponseEntity<User> {
-        if(userService.ifUserExist(email, password)){
+        if (userService.ifUserExist(email, password)) {
             return ResponseEntity(userService.getUserByEmail(email), HttpStatus.OK)
-        }else{
+        } else {
             return ResponseEntity(HttpStatus.NO_CONTENT)
         }
+    }
+
+    //http://localhost:8080/api/v1/user/1/9/11/14
+    @CrossOrigin(origins = ["http://localhost:3000"])
+    @GetMapping("/{idUser}/{idPhone}/{idVersion}/{idColor}")
+    fun purchasePhone(@PathVariable idUser: Int, @PathVariable idPhone: Int, @PathVariable idVersion: Int, @PathVariable idColor: Int): ResponseEntity<User> {
+        return ResponseEntity(userService.purchasePhone(idUser, idPhone, idVersion, idColor), HttpStatus.OK)
     }
 
 
     //http://localhost:8080/api/v1/user/exampledata
     @GetMapping("/exampledata")
-    fun setUsers():ResponseEntity<Unit>{
+    fun setUsers(): ResponseEntity<Unit> {
         LOGGER.warn("Begin User Exampledata")
         userService.setUsersExample()
         return ResponseEntity(HttpStatus.OK)

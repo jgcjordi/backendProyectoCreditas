@@ -84,7 +84,7 @@ class PhoneServiceImpl : IPhoneService {
         phoneDao.save(phone2)
         val version3 = VersionPhone(null, 797F, 4, 64, phone2)
         val version4 = VersionPhone(null, 826F, 4, 128, phone2)
-        val version5 = VersionPhone(null, 979F, 5, 256, phone2)
+        val version5 = VersionPhone(null, 979F, 4, 256, phone2)
         versionPhoneDao.save(version3)
         versionPhoneDao.save(version4)
         versionPhoneDao.save(version5)

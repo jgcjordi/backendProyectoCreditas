@@ -9,5 +9,6 @@ interface IUserService {
     fun ifUserExist(email: String, password: String): Boolean
     fun setUsersExample()
     fun getUserByEmail(email: String): User
+    fun purchasePhone(idUser:Int, idPhone: Int, idVersion: Int, idColor: Int):User
 
 }
