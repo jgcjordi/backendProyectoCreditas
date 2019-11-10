@@ -1,4 +1,4 @@
-package com.creditas.backendphones.phone.domain.entities.dao
+package com.creditas.backendphones.phone.domain.dao
 
 import com.creditas.backendphones.phone.domain.entities.Phone
 import org.springframework.data.repository.CrudRepository

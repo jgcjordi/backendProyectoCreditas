@@ -1,7 +1,5 @@
-package com.creditas.backendphones.phone.domain.entities.dao
+package com.creditas.backendphones.phone.domain.dao
 
-import com.creditas.backendphones.phone.domain.entities.ColorPhone
-import com.creditas.backendphones.phone.domain.entities.Phone
 import com.creditas.backendphones.phone.domain.entities.VersionPhone
 import org.springframework.data.repository.CrudRepository
 

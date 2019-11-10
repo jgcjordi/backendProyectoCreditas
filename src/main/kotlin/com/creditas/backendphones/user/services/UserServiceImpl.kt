@@ -1,16 +1,10 @@
 package com.creditas.backendphones.user.services
 
-import com.creditas.backendphones.phone.domain.entities.ColorPhone
-import com.creditas.backendphones.phone.domain.entities.Phone
-import com.creditas.backendphones.phone.domain.entities.VersionPhone
-import com.creditas.backendphones.phone.domain.entities.dao.IColorPhoneDao
-import com.creditas.backendphones.phone.domain.entities.dao.IVersionPhoneDao
 import com.creditas.backendphones.user.domain.entities.User
-import com.creditas.backendphones.user.domain.entities.dao.IUserDao
+import com.creditas.backendphones.user.domain.dao.IUserDao
 import org.apache.juli.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.*
 
 
 @Service
@@ -30,6 +24,8 @@ class UserServiceImpl : IUserService {
             return false
         }
     }
+
+    override fun getUserByEmail(email:String):User = userDao.findByEmail(email)
 
 
     override fun setUsersExample() {

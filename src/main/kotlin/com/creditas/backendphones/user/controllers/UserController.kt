@@ -1,6 +1,7 @@
 package com.creditas.backendphones.user.controllers
 
 
+import com.creditas.backendphones.user.domain.entities.User
 import com.creditas.backendphones.user.services.IUserService
 import org.apache.juli.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,8 +21,12 @@ class UserController {
     //http://localhost:8080/api/v1/user/jgc.jordi@gmail.com/password1
     @CrossOrigin(origins = ["http://localhost:3000"])
     @GetMapping("/{email}/{password}")
-    fun ifUserExist(@PathVariable email: String, @PathVariable password: String): Boolean {
-        return userService.ifUserExist(email, password)
+    fun tryLogIn(@PathVariable email: String, @PathVariable password: String): ResponseEntity<User> {
+        if(userService.ifUserExist(email, password)){
+            return ResponseEntity(userService.getUserByEmail(email), HttpStatus.OK)
+        }else{
+            return ResponseEntity(HttpStatus.NO_CONTENT)
+        }
     }
 
 

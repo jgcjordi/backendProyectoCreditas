@@ -3,13 +3,12 @@ package com.creditas.backendphones.phone.services
 import com.creditas.backendphones.phone.domain.entities.ColorPhone
 import com.creditas.backendphones.phone.domain.entities.Phone
 import com.creditas.backendphones.phone.domain.entities.VersionPhone
-import com.creditas.backendphones.phone.domain.entities.dao.IColorPhoneDao
-import com.creditas.backendphones.phone.domain.entities.dao.IPhoneDao
-import com.creditas.backendphones.phone.domain.entities.dao.IVersionPhoneDao
+import com.creditas.backendphones.phone.domain.dao.IColorPhoneDao
+import com.creditas.backendphones.phone.domain.dao.IPhoneDao
+import com.creditas.backendphones.phone.domain.dao.IVersionPhoneDao
 import org.apache.juli.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 
