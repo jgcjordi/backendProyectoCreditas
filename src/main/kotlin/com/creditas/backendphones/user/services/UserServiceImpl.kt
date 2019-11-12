@@ -2,9 +2,19 @@ package com.creditas.backendphones.user.services
 
 import com.creditas.backendphones.user.domain.entities.User
 import com.creditas.backendphones.user.domain.dao.IUserDao
-import org.apache.juli.logging.LogFactory
+import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.SignatureAlgorithm
+import org.apache.commons.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.AuthorityUtils.commaSeparatedStringToAuthorityList
 import org.springframework.stereotype.Service
+import java.util.*
+import java.util.stream.Collectors
+import javax.servlet.http.HttpServletRequest
+
+
+
 
 
 @Service
@@ -34,6 +44,24 @@ class UserServiceImpl : IUserService {
         user.idLastPhonePurchasedColor = idColor
         userDao.save(user)
         return userDao.findById(idUser).get()
+    }
+
+    override fun getJWTToken(email: String, request: HttpServletRequest): String {
+        val grantedAuthorities:List<GrantedAuthority> = commaSeparatedStringToAuthorityList("ROLE_USER")
+
+        val  token:String = Jwts
+                .builder()
+                .claim("ip", request.remoteAddr)
+                .setId("Creditas")
+                .setSubject(email)
+                .claim("authorities", grantedAuthorities.stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toList()))
+                .setIssuedAt(Date(System.currentTimeMillis()))
+                .setExpiration(Date(System.currentTimeMillis() + 1200000))
+                .signWith(SignatureAlgorithm.HS512, "bragasdeesparto".toByteArray()).compact()
+
+        return "Bearer $token"
     }
 
 

@@ -12,7 +12,7 @@ data class User(
         val id_user: Int?,
         val email:String?,
         val name:String?,
-        val password: String?,
+        var password: String?,
         var idLastPhonePurchased: Int?,
         var idLastPhonePurchasedVersion: Int?,
         var idLastPhonePurchasedColor: Int?

@@ -1,4 +1,4 @@
-package com.creditas.backendphones.phone.controllers
+package com.creditas.backendphones.phone.infraestructure.controllers
 
 import com.creditas.backendphones.phone.domain.entities.Phone
 import com.creditas.backendphones.phone.services.IPhoneService
