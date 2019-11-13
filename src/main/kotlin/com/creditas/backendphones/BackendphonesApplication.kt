@@ -30,10 +30,9 @@ class BackendphonesApplication {
                     .cors()
                     .and()
                     .csrf().disable()
-                    //.addFilterAfter(JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter::class.java)
+                    .addFilterAfter(JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter::class.java).antMatcher("/api/v1/user/logged/**")
                     .authorizeRequests()
                     .antMatchers("/api/v1/phone/**", "/api/v1/user/**").permitAll()
-                    //.antMatchers("/api/v1/phone/**", "/api/v1/user/login").permitAll()
                     .anyRequest().authenticated()
 
         }

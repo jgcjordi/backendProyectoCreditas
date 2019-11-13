@@ -43,7 +43,9 @@ class UserServiceImpl : IUserService {
         user.idLastPhonePurchasedVersion = idVersion
         user.idLastPhonePurchasedColor = idColor
         userDao.save(user)
-        return userDao.findById(idUser).get()
+        val userBD = userDao.findById(idUser).get()
+        userBD.password = ""
+        return userBD
     }
 
     override fun getJWTToken(email: String, request: HttpServletRequest): String {
@@ -58,8 +60,8 @@ class UserServiceImpl : IUserService {
                         .map(GrantedAuthority::getAuthority)
                         .collect(Collectors.toList()))
                 .setIssuedAt(Date(System.currentTimeMillis()))
-                .setExpiration(Date(System.currentTimeMillis() + 1200000))
-                .signWith(SignatureAlgorithm.HS512, "bragasdeesparto".toByteArray()).compact()
+                .setExpiration(Date(System.currentTimeMillis() + 60000))
+                .signWith(SignatureAlgorithm.HS512, "keybackendcreditas".toByteArray()).compact()
 
         return "Bearer $token"
     }

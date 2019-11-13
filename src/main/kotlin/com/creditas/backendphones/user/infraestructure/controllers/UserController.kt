@@ -1,7 +1,6 @@
 package com.creditas.backendphones.user.infraestructure.controllers
 
 
-import com.creditas.backendphones.phone.domain.entities.Phone
 import com.creditas.backendphones.user.domain.entities.User
 import com.creditas.backendphones.user.services.IUserService
 import org.apache.juli.logging.LogFactory
@@ -20,18 +19,9 @@ class UserController {
     @Autowired
     private lateinit var userService: IUserService
 
-    //http://localhost:8080/api/v1/user/jgc.jordi@gmail.com/password1
-    @CrossOrigin(origins = ["http://localhost:3000"])
-    @GetMapping("/{email}/{password}")
-    fun tryLogIn(@PathVariable email: String, @PathVariable password: String): ResponseEntity<User> {
-        if (userService.ifUserExist(email, password)) {
-            return ResponseEntity(userService.getUserByEmail(email), HttpStatus.OK)
-        } else {
-            return ResponseEntity(HttpStatus.NO_CONTENT)
-        }
-    }
 
     //http://localhost:8080/api/v1/user/login
+    @CrossOrigin(origins = ["http://localhost:3000"])
     @PostMapping("/login")
     fun login(@RequestBody user:User, request: HttpServletRequest): ResponseEntity<User> {
         if (userService.ifUserExist(user.email!!, user.password!!)) {
@@ -44,17 +34,12 @@ class UserController {
         }
     }
 
-    //http://localhost:8080/api/v1/user/purchase
-    @GetMapping("/purchase")
-    fun getPhones():ResponseEntity<String>{
-        return ResponseEntity("Hola", HttpStatus.OK)
-    }
-
-    //http://localhost:8080/api/v1/user/1/9/11/14
+    //http://localhost:8080/api/v1/user/logged/purchase
     @CrossOrigin(origins = ["http://localhost:3000"])
-    @GetMapping("/{idUser}/{idPhone}/{idVersion}/{idColor}")
-    fun purchasePhone(@PathVariable idUser: Int, @PathVariable idPhone: Int, @PathVariable idVersion: Int, @PathVariable idColor: Int): ResponseEntity<User> {
-        return ResponseEntity(userService.purchasePhone(idUser, idPhone, idVersion, idColor), HttpStatus.OK)
+    @PostMapping("/logged/purchase")
+    fun purchasePhone(@RequestBody user:User):ResponseEntity<User>{
+        return ResponseEntity(userService.purchasePhone(user.id_user!!, user.idLastPhonePurchased!!,
+                user.idLastPhonePurchasedVersion!!, user.idLastPhonePurchasedColor!!), HttpStatus.OK)
     }
 
 
