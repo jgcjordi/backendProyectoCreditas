@@ -16,6 +16,7 @@ class UserController {
 
     private val LOGGER = LogFactory.getLog("UserController.class")
 
+
     @Autowired
     private lateinit var userService: IUserService
 

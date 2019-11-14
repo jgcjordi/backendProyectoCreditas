@@ -3,9 +3,12 @@ package com.creditas.backendphones.user.infraestructure.security
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import org.apache.juli.logging.LogFactory
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 import java.util.*
 import java.util.stream.Collectors
@@ -13,12 +16,14 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
+
 class JWTAuthorizationFilter : OncePerRequestFilter() {
 
     val LOGGER = LogFactory.getLog("JWTAuthorizationFilter.class")
 
     val header: String = "Authorization"
     val prefix: String = "Bearer"
+
 
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
 
@@ -37,7 +42,7 @@ class JWTAuthorizationFilter : OncePerRequestFilter() {
 
     private fun validateJWT(req: HttpServletRequest): Claims {
         val jwtToken: String = req.getHeader(header).replace(prefix, " ")
-        return Jwts.parser().setSigningKey("keybackendcreditas".toByteArray())
+        return Jwts.parser().setSigningKey("keyusertokenbackendcreditas".toByteArray())
                 .parseClaimsJws(jwtToken).body
     }
 

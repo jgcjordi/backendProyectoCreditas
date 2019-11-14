@@ -1,6 +1,8 @@
 package com.creditas.backendphones
 
+import com.creditas.backendphones.user.domain.dao.IUserDao
 import com.creditas.backendphones.user.infraestructure.security.JWTAuthorizationFilter
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Configuration
@@ -14,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @SpringBootApplication
 class BackendphonesApplication {
 
+
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
@@ -24,6 +27,7 @@ class BackendphonesApplication {
     @EnableWebSecurity
     @Configuration
     class WebSecurityConfig : WebSecurityConfigurerAdapter() {
+
         override fun configure(httpSecurity: HttpSecurity) {
 
             httpSecurity

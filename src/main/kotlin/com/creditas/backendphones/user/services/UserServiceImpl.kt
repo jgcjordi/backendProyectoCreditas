@@ -6,6 +6,8 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.apache.commons.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Configuration
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.AuthorityUtils.commaSeparatedStringToAuthorityList
 import org.springframework.stereotype.Service
@@ -19,6 +21,9 @@ import javax.servlet.http.HttpServletRequest
 
 @Service
 class UserServiceImpl : IUserService {
+
+    @Value("\${app.keyGenerateToken}")
+    lateinit var keyGenerateToken:String
 
     @Autowired
     private lateinit var userDao: IUserDao
@@ -61,7 +66,10 @@ class UserServiceImpl : IUserService {
                         .collect(Collectors.toList()))
                 .setIssuedAt(Date(System.currentTimeMillis()))
                 .setExpiration(Date(System.currentTimeMillis() + 60000))
-                .signWith(SignatureAlgorithm.HS512, "keybackendcreditas".toByteArray()).compact()
+                .signWith(SignatureAlgorithm.HS512, keyGenerateToken.toByteArray()).compact()
+
+        LOGGER.warn(keyGenerateToken)
+
 
         return "Bearer $token"
     }
