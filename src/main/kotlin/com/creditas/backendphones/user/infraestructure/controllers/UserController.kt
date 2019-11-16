@@ -42,6 +42,12 @@ class UserController {
                 user.idLastPhonePurchasedVersion!!, user.idLastPhonePurchasedColor!!), HttpStatus.OK)
     }
 
+    //http://localhost:8080/api/v1/user/logged/validToken
+    @GetMapping("/logged/validToken")
+    fun isValidToken():ResponseEntity<Boolean>{
+        return ResponseEntity(true, HttpStatus.OK)
+    }
+
 
     //http://localhost:8080/api/v1/user/exampledata
     @GetMapping("/exampledata")
