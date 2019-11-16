@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/v1/phone")
 class PhoneController {
 
@@ -19,7 +20,6 @@ class PhoneController {
     private lateinit var phoneService: IPhoneService
 
     //http://localhost:8080/api/v1/phone/all
-    @CrossOrigin(origins = ["http://localhost:3000"])
     @GetMapping("/all")
     fun getPhones():ResponseEntity<MutableList<Phone>>{
         val list:MutableList<Phone> = phoneService.getAllPhones()
@@ -27,12 +27,10 @@ class PhoneController {
     }
 
     //http://localhost:8080/api/v1/phone/7
-    @CrossOrigin(origins = ["http://localhost:3000"])
     @GetMapping("/{id}")
     fun getPhoneById(@PathVariable id: Int): Optional<Phone> = phoneService.getPhoneById(id)
 
     //http://localhost:8080/api/v1/phone/phones?search=Motorola+Iphone
-    @CrossOrigin(origins = ["http://localhost:3000"])
     @GetMapping("/phones")
     fun getPhonesFilteredByKeywords(@RequestParam(value = "search", defaultValue = "") string: String): MutableList<Phone> {
         LOGGER.info(string)

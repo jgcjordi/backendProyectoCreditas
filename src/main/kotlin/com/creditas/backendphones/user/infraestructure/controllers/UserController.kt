@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletRequest
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/v1/user")
 class UserController {
 
@@ -22,7 +23,6 @@ class UserController {
 
 
     //http://localhost:8080/api/v1/user/login
-    @CrossOrigin(origins = ["http://localhost:3000"])
     @PostMapping("/login")
     fun login(@RequestBody user:User, request: HttpServletRequest): ResponseEntity<User> {
         if (userService.ifUserExist(user.email!!, user.password!!)) {
@@ -31,12 +31,11 @@ class UserController {
             userBD.password = token
             return ResponseEntity(userBD, HttpStatus.OK)
         } else {
-            return ResponseEntity(HttpStatus.BAD_REQUEST)
+            return ResponseEntity(HttpStatus.NOT_FOUND)
         }
     }
 
     //http://localhost:8080/api/v1/user/logged/purchase
-    @CrossOrigin(origins = ["http://localhost:3000"])
     @PostMapping("/logged/purchase")
     fun purchasePhone(@RequestBody user:User):ResponseEntity<User>{
         return ResponseEntity(userService.purchasePhone(user.id_user!!, user.idLastPhonePurchased!!,
