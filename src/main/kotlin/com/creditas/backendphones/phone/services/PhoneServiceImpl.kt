@@ -28,12 +28,13 @@ class PhoneServiceImpl : IPhoneService {
 
     override fun getAllPhones(): MutableList<Phone> = phoneDao.findAll() as MutableList<Phone>
 
-    override fun getAllPhonesPaginated(page:Int): MutableList<Phone> {
+    override fun getAllPhonesPaginated(page:Int): MutableMap<String, Any> {
         val size = phoneDao.count()
         val pageSize = 6
         val pages = size/pageSize
         LOGGER.warn(pages.toString())
-        return phoneDao.findAll(PageRequest.of(page, pageSize))
+        val list = phoneDao.findAll(PageRequest.of(page, pageSize))
+        return mutableMapOf("phoneList" to list, "totalPages" to pages, "currentPage" to page)
     }
 
     override fun getPhoneById(id: Int): Optional<Phone> = phoneDao.findById(id)

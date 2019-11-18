@@ -28,10 +28,11 @@ class PhoneController {
 
     //http://localhost:8080/api/v1/phone/allPaginated/2
     @GetMapping("/allPaginated/{page}")
-    fun getPhonesPaginated(@PathVariable page: Int):ResponseEntity<MutableList<Phone>>{
-        val list:MutableList<Phone> = phoneService.getAllPhonesPaginated(page)
-        return ResponseEntity(list, HttpStatus.OK)
+    fun getPhonesPaginated(@PathVariable page: Int):ResponseEntity<MutableMap<String, Any>>{
+        return ResponseEntity(phoneService.getAllPhonesPaginated(page), HttpStatus.OK)
     }
+
+
 
     //http://localhost:8080/api/v1/phone/7
     @GetMapping("/{id}")
