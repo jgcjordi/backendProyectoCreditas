@@ -17,10 +17,8 @@ class UserController {
 
     private val LOGGER = LogFactory.getLog("UserController.class")
 
-
     @Autowired
     private lateinit var userService: IUserService
-
 
     //http://localhost:8080/api/v1/user/login
     @PostMapping("/login")

@@ -8,6 +8,7 @@ import com.creditas.backendphones.phone.domain.dao.IPhoneDao
 import com.creditas.backendphones.phone.domain.dao.IVersionPhoneDao
 import org.apache.juli.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -25,8 +26,15 @@ class PhoneServiceImpl : IPhoneService {
     private lateinit var versionPhoneDao: IVersionPhoneDao
     private val LOGGER = LogFactory.getLog("PhoneServiceImpl.class")
 
-    //@Transactional(readOnly = true)//Se le puede indicar que solo es de lectura
     override fun getAllPhones(): MutableList<Phone> = phoneDao.findAll() as MutableList<Phone>
+
+    override fun getAllPhonesPaginated(page:Int): MutableList<Phone> {
+        val size = phoneDao.count()
+        val pageSize = 6
+        val pages = size/pageSize
+        LOGGER.warn(pages.toString())
+        return phoneDao.findAll(PageRequest.of(page, pageSize))
+    }
 
     override fun getPhoneById(id: Int): Optional<Phone> = phoneDao.findById(id)
 
@@ -37,7 +45,7 @@ class PhoneServiceImpl : IPhoneService {
 
         val phonesFiltered = mutableListOf<Phone>()
 
-        //Busqueda especifica con todas las palabras
+        //Specific search with all keywords
         for (p in phones) {
             var add = true
             for (l in listKeywords) {
@@ -49,7 +57,7 @@ class PhoneServiceImpl : IPhoneService {
             if (add) phonesFiltered.add(p)
         }
 
-        //Si no encuentra ningun resultado con la anterior busqueda, busqueda con almenos una palabra
+        // If you don't find any results with the previous search, search with at least one word
         if (phonesFiltered.isEmpty()) {
             for (p in phones) {
                 for (l in listKeywords) {

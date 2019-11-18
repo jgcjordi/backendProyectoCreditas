@@ -10,4 +10,6 @@ interface IPhoneService {
     fun phonesFilteredByKeywords(stringFilter: String):MutableList<Phone>
     fun setPhonesExample()
 
+    fun getAllPhonesPaginated(page:Int): MutableList<Phone>
+
 }
