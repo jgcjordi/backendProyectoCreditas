@@ -33,6 +33,19 @@ class UserController {
         }
     }
 
+    //http://localhost:8080/api/v1/user/singIn
+    @PostMapping("/singIn")
+    fun singIn(@RequestBody user:User, request: HttpServletRequest): ResponseEntity<User> {
+        if (!userService.ifEmailExist(user.email!!)) {
+            val userBD = userService.registryNewUser(user)
+            val token:String = userService.getJWTToken(userBD.email!!, request)
+            userBD.password = token
+            return ResponseEntity(userBD, HttpStatus.OK)
+        } else {
+            return ResponseEntity(HttpStatus.PRECONDITION_FAILED)
+        }
+    }
+
     //http://localhost:8080/api/v1/user/logged/purchase
     @PostMapping("/logged/purchase")
     fun purchasePhone(@RequestBody user:User):ResponseEntity<User>{

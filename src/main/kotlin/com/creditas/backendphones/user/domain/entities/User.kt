@@ -8,12 +8,12 @@ import javax.persistence.*
 data class User(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        @Column(name="id_user")
+        @Column(name = "id_user")
         val id_user: Int?,
-        val email:String?,
-        val name:String?,
+        val email: String?,
+        val name: String?,
         var password: String?,
-        var idLastPhonePurchased: Int?,
-        var idLastPhonePurchasedVersion: Int?,
-        var idLastPhonePurchasedColor: Int?
+        var idLastPhonePurchased: Int = -1,
+        var idLastPhonePurchasedVersion: Int = -1,
+        var idLastPhonePurchasedColor: Int = -1
 )

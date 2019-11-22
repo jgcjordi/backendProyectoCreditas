@@ -17,8 +17,6 @@ import javax.servlet.http.HttpServletRequest
 
 
 
-
-
 @Service
 class UserServiceImpl : IUserService {
 
@@ -39,6 +37,16 @@ class UserServiceImpl : IUserService {
             return false
         }
     }
+
+    override fun ifEmailExist(email:String): Boolean {
+        return userDao.existsByEmail(email)
+    }
+
+    override fun registryNewUser(user:User): User {
+        userDao.save(user)
+        return userDao.findByEmail(user.email!!)
+    }
+
 
     override fun getUserByEmail(email:String):User = userDao.findByEmail(email)
 
@@ -65,7 +73,7 @@ class UserServiceImpl : IUserService {
                         .map(GrantedAuthority::getAuthority)
                         .collect(Collectors.toList()))
                 .setIssuedAt(Date(System.currentTimeMillis()))
-                .setExpiration(Date(System.currentTimeMillis() + 60000))
+                .setExpiration(Date(System.currentTimeMillis() + 600000))
                 .signWith(SignatureAlgorithm.HS512, keyGenerateToken.toByteArray()).compact()
 
         LOGGER.warn(keyGenerateToken)
