@@ -23,34 +23,34 @@ class UserController {
     //http://localhost:8080/api/v1/user/login
     @PostMapping("/login")
     fun login(@RequestBody user:User, request: HttpServletRequest): ResponseEntity<User> {
-        if (userService.ifUserExist(user.email!!, user.password!!)) {
+        return if (userService.ifUserExist(user.email!!, user.password!!)) {
             val userBD = userService.getUserByEmail(user.email)
             val token:String = userService.getJWTToken(user.email, request)
             userBD.password = token
-            return ResponseEntity(userBD, HttpStatus.OK)
+            ResponseEntity(userBD, HttpStatus.OK)
         } else {
-            return ResponseEntity(HttpStatus.NOT_FOUND)
+            ResponseEntity(HttpStatus.NOT_FOUND)
         }
     }
 
     //http://localhost:8080/api/v1/user/singIn
     @PostMapping("/singIn")
     fun singIn(@RequestBody user:User, request: HttpServletRequest): ResponseEntity<User> {
-        if (!userService.ifEmailExist(user.email!!)) {
+        return if (!userService.ifEmailExist(user.email!!)) {
             val userBD = userService.registryNewUser(user)
             val token:String = userService.getJWTToken(userBD.email!!, request)
             userBD.password = token
-            return ResponseEntity(userBD, HttpStatus.OK)
+            ResponseEntity(userBD, HttpStatus.OK)
         } else {
-            return ResponseEntity(HttpStatus.PRECONDITION_FAILED)
+            ResponseEntity(HttpStatus.PRECONDITION_FAILED)
         }
     }
 
     //http://localhost:8080/api/v1/user/logged/purchase
     @PostMapping("/logged/purchase")
     fun purchasePhone(@RequestBody user:User):ResponseEntity<User>{
-        return ResponseEntity(userService.purchasePhone(user.id_user!!, user.idLastPhonePurchased!!,
-                user.idLastPhonePurchasedVersion!!, user.idLastPhonePurchasedColor!!), HttpStatus.OK)
+        return ResponseEntity(userService.purchasePhone(user.id_user!!, user.idLastPhonePurchased,
+                user.idLastPhonePurchasedVersion, user.idLastPhonePurchasedColor), HttpStatus.OK)
     }
 
     //http://localhost:8080/api/v1/user/logged/validToken
