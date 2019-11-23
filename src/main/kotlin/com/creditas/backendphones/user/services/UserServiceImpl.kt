@@ -73,7 +73,7 @@ class UserServiceImpl : IUserService {
                         .map(GrantedAuthority::getAuthority)
                         .collect(Collectors.toList()))
                 .setIssuedAt(Date(System.currentTimeMillis()))
-                .setExpiration(Date(System.currentTimeMillis() + 600000))
+                .setExpiration(Date(System.currentTimeMillis() + 60000))
                 .signWith(SignatureAlgorithm.HS512, keyGenerateToken.toByteArray()).compact()
 
         LOGGER.warn(keyGenerateToken)

@@ -32,8 +32,6 @@ class PhoneController {
         return ResponseEntity(phoneService.getAllPhonesPaginated(page), HttpStatus.OK)
     }
 
-
-
     //http://localhost:8080/api/v1/phone/7
     @GetMapping("/{id}")
     fun getPhoneById(@PathVariable id: Int): Optional<Phone> = phoneService.getPhoneById(id)
