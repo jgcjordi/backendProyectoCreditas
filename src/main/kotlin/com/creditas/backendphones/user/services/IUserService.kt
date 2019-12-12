@@ -1,8 +1,6 @@
 package com.creditas.backendphones.user.services
 
-import com.creditas.backendphones.phone.domain.entities.Phone
 import com.creditas.backendphones.user.domain.entities.User
-import java.util.*
 import javax.servlet.http.HttpServletRequest
 
 interface IUserService {
