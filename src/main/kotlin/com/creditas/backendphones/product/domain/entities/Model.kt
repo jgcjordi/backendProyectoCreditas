@@ -15,6 +15,6 @@ data class Model(
         val image: String,
 
         @JsonBackReference
-        @OneToMany(mappedBy = "model", fetch = FetchType.LAZY, cascade = [(CascadeType.ALL)], orphanRemoval = true)
-        var productStock: List<ProductStock>
+        @OneToMany(mappedBy = "model", cascade = [(CascadeType.ALL)], orphanRemoval = true)
+        var productStock: List<ProductStock> = listOf()
 )

@@ -1,13 +1,14 @@
 package com.creditas.backendphones.user.services
 
+import com.creditas.backendphones.product.domain.entities.ProductStock
 import com.creditas.backendphones.user.domain.entities.User
 import com.creditas.backendphones.user.domain.dao.IUserDao
+import com.creditas.backendphones.user.infraestructure.security.JWTAuthorizationFilter
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.apache.commons.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.context.annotation.Configuration
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.AuthorityUtils.commaSeparatedStringToAuthorityList
 import org.springframework.stereotype.Service
@@ -50,16 +51,7 @@ class UserServiceImpl : IUserService {
 
     override fun getUserByEmail(email:String):User = userDao.findByEmail(email)
 
-    override fun purchasePhone(idUser:Int, idPhone: Int, idVersion: Int, idColor: Int):User {
-        val user = userDao.findById(idUser).get()
-        user.idLastPhonePurchased = idPhone
-        user.idLastPhonePurchasedVersion = idVersion
-        user.idLastPhonePurchasedColor = idColor
-        userDao.save(user)
-        val userBD = userDao.findById(idUser).get()
-        userBD.password = ""
-        return userBD
-    }
+    override fun getUserById(id: Int): User = userDao.findById(id).get()
 
     override fun getJWTToken(email: String, request: HttpServletRequest): String {
         val grantedAuthorities:List<GrantedAuthority> = commaSeparatedStringToAuthorityList("ROLE_USER")
@@ -73,7 +65,7 @@ class UserServiceImpl : IUserService {
                         .map(GrantedAuthority::getAuthority)
                         .collect(Collectors.toList()))
                 .setIssuedAt(Date(System.currentTimeMillis()))
-                .setExpiration(Date(System.currentTimeMillis() + 60000))
+                .setExpiration(Date(System.currentTimeMillis() + 600000))
                 .signWith(SignatureAlgorithm.HS512, keyGenerateToken.toByteArray()).compact()
 
         LOGGER.warn(keyGenerateToken)
@@ -83,12 +75,23 @@ class UserServiceImpl : IUserService {
     }
 
 
-    override fun setUsersExample() {
-        val user1 = User(null, "jgc.jordi@gmail.com", "Jordi Gomis", "password1", -1, -1, -1)
+    private fun getEmailUserFromBearer(bearer:String): String {
+        val jwtToken: String = bearer.replace("Bearer", " ")
+        return Jwts.parser().setSigningKey(keyGenerateToken.toByteArray())
+                .parseClaimsJws(jwtToken).body.subject as String
+    }
+
+    override fun getUserFromBearer(bearer: String): User {
+        return getUserByEmail(getEmailUserFromBearer(bearer))
+    }
+
+
+    override fun setBdUsersExample() {
+        val user1 = User(null, "jgc.jordi@gmail.com", "Jordi Gomis", "password1")
         userDao.save(user1)
-        val user2 = User(null, "kike@gmail.com", "Kike Gomis", "password2", -1, -1, -1)
+        val user2 = User(null, "kike@gmail.com", "Kike Gomis", "password2")
         userDao.save(user2)
-        val user3 = User(null, "neus@gmail.com", "Neus Gomis", "password3", -1, -1, -1)
+        val user3 = User(null, "neus@gmail.com", "Neus Gomis", "password3")
         userDao.save(user3)
     }
 

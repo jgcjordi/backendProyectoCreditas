@@ -1,19 +1,21 @@
 package com.creditas.backendphones.user.domain.entities
 
 
+import com.creditas.backendphones.orders.domain.entities.Invoice
+import com.fasterxml.jackson.annotation.JsonBackReference
 import javax.persistence.*
 
 @Entity
-@Table(name = "user")
+@Table
 data class User(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        @Column(name = "id_user")
-        val id_user: Int?,
+        val id: Int?,
         val email: String?,
         val name: String?,
         var password: String?,
-        var idLastPhonePurchased: Int = -1,
-        var idLastPhonePurchasedVersion: Int = -1,
-        var idLastPhonePurchasedColor: Int = -1
+
+        @JsonBackReference(value = "invoice-user")
+        @OneToMany(mappedBy = "user", cascade = [(CascadeType.ALL)], orphanRemoval = true)
+        var invoices: List<Invoice> = listOf()
 )

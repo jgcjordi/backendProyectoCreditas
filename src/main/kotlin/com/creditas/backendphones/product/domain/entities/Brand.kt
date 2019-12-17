@@ -12,6 +12,6 @@ data class Brand(
         val name: String,
 
         @JsonBackReference
-        @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY, cascade = [(CascadeType.ALL)], orphanRemoval = true)
-        var productStock: List<ProductStock>
+        @OneToMany(mappedBy = "brand", cascade = [(CascadeType.ALL)], orphanRemoval = true)
+        var productStock: List<ProductStock> = listOf()
 )

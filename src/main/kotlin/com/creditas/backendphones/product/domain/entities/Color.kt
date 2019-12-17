@@ -12,6 +12,6 @@ data class Color(
         val name: String,
 
         @JsonBackReference
-        @OneToMany(mappedBy = "color", fetch = FetchType.LAZY, cascade = [(CascadeType.ALL)], orphanRemoval = true)
-        var productStock: List<ProductStock>
+        @OneToMany(mappedBy = "color", cascade = [(CascadeType.ALL)], orphanRemoval = true)
+        var productStock: List<ProductStock> = listOf()
 )

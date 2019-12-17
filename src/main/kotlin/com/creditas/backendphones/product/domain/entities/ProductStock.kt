@@ -1,6 +1,8 @@
 package com.creditas.backendphones.product.domain.entities
 
 
+import com.creditas.backendphones.orders.domain.entities.OrderItem
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.*
 
@@ -15,11 +17,11 @@ data class ProductStock(
         val price: Float,
 
         @JsonManagedReference
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne
         @JoinColumn
         val model: Model,
         @JsonManagedReference
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne
         @JoinColumn
         var brand: Brand,
         @JsonManagedReference
@@ -33,5 +35,11 @@ data class ProductStock(
         @JsonManagedReference
         @ManyToOne
         @JoinColumn
-        var storage: Storage
+        var storage: Storage,
+
+        @JsonBackReference
+        @OneToMany(mappedBy = "order_item", cascade = [(CascadeType.ALL)], orphanRemoval = true)
+        var order_items: List<OrderItem> = listOf()
+
+
 )

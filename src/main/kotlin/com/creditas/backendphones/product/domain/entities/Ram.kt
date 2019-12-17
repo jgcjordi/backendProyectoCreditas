@@ -12,7 +12,7 @@ data class Ram(
         val value: Int,
 
         @JsonBackReference
-        @OneToMany(mappedBy = "ram", fetch = FetchType.LAZY, cascade = [(CascadeType.ALL)], orphanRemoval = true)
-        var productStock: List<ProductStock>
+        @OneToMany(mappedBy = "ram", cascade = [(CascadeType.ALL)], orphanRemoval = true)
+        var productStock: List<ProductStock> = listOf()
 )
 

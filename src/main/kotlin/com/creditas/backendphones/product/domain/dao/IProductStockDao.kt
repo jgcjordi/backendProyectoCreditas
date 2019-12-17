@@ -8,24 +8,18 @@ import org.springframework.data.repository.CrudRepository
 
 interface IProductStockDao : CrudRepository<ProductStock, Int> {
 
-    fun findAll(pageable: Pageable): MutableList<ProductStock>
-
-    @Query("SELECT * FROM product_stock", nativeQuery = true)
-    fun getAllSqlNative(): MutableList<ProductStock>
-
-
-    @Query("SELECT * FROM creditasbackendbdv2.product_stock WHERE model_id LIKE 8 ORDER BY price LIMIT 1", nativeQuery = true)
-    fun getCheapestModel(): MutableList<ProductStock>
-
-
-    @Query("SELECT * FROM (select id, model_id, min(price) as minprice from creditasbackendbdv2.product_stock where stock>0 group by model_id) as x inner join creditasbackendbdv2.product_stock as p on p.id = x.id",
+    @Query("SELECT * FROM (select model_id, min(price) as minprice from creditasbackendbdv2.product_stock where stock>0 group by model_id) as x inner join creditasbackendbdv2.product_stock as p on p.price = x.minprice",
             nativeQuery = true)
-    fun getAllCheapestModelsWithStock(): MutableList<ProductStock>
+    fun findAllCheapestModelsWithStock(): MutableList<ProductStock>
 
-    @Query("SELECT * FROM (select id, model_id, min(price) as minprice from creditasbackendbdv2.product_stock where stock>0 group by model_id) as x inner join creditasbackendbdv2.product_stock as p on p.id = x.id",
-            countQuery = "SELECT count(*) FROM (select id, model_id, min(price) as minprice from creditasbackendbdv2.product_stock where stock>0 group by model_id ) as x inner join creditasbackendbdv2.product_stock as p on p.id = x.id",
+    @Query("SELECT * FROM (select model_id, min(price) as minprice from creditasbackendbdv2.product_stock where stock>0 group by model_id) as x inner join creditasbackendbdv2.product_stock as p on p.price = x.minprice",
+            countQuery = "SELECT count(*) FROM (select model_id, min(price) as minprice from creditasbackendbdv2.product_stock where stock>0 group by model_id) as x inner join creditasbackendbdv2.product_stock as p on p.price = x.minprice",
             nativeQuery = true)
-    fun getAllCheapestModelsWithStockPaged(pageable: Pageable): Page<ProductStock>
+    fun findAllCheapestModelsWithStockPaged(pageable: Pageable): Page<ProductStock>
+
+    @Query("SELECT * FROM creditasbackendbdv2.product_stock where stock>0 and model_id = ?1 order by price",
+            nativeQuery = true)
+    fun findAllProductsOfThisModelWithStockOrderedByPrice(model: Int): MutableList<ProductStock>
 
 
 }

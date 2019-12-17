@@ -12,6 +12,6 @@ data class Storage(
         val value: Int,
 
         @JsonBackReference
-        @OneToMany(mappedBy = "storage", fetch = FetchType.LAZY, cascade = [(CascadeType.ALL)], orphanRemoval = true)
-        var productStock: List<ProductStock>
+        @OneToMany(mappedBy = "storage", cascade = [(CascadeType.ALL)], orphanRemoval = true)
+        var productStock: List<ProductStock> = listOf()
 )
