@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> c85e4f7c584dcf5131ad972289277b99174bce66
 ## This constant two-part project:
 * [Frontend](https://github.com/jgcjordi/frontendProyectoCreditas)
 

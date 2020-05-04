@@ -144,7 +144,7 @@ class ProductServiceImpl : IProductService {
 
         val mPixel3 = Model(null, "Pixel 3",
                 "Finding the best price for the Google Pixel 3 is no easy task. Here you will find where to buy the Google Pixel 3 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
-                "https://cdn.phonehouse.es/res/product450/resource_1585992.jpg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/pixel-3.jpg")
         modelDao.save(mPixel3)
         productStockDao.save(ProductStock(null, 5, 0, 504F, mPixel3, brandGoogle, colorBlack, ram4, storage64))
         productStockDao.save(ProductStock(null, 5, 0, 514F, mPixel3, brandGoogle, colorPink, ram4, storage64))
@@ -153,7 +153,7 @@ class ProductServiceImpl : IProductService {
 
         val mPixel3Xl = Model(null, "Pixel 3 XL",
                 "Finding the best price for the Google Pixel 3 XL is no easy task. Here you will find where to buy the Google Pixel 3 XL at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
-                "https://cdn.phonehouse.es/res/product450/resource_1586585.jpg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/pixel-3-xl.jpg")
         modelDao.save(mPixel3Xl)
         productStockDao.save(ProductStock(null, 5, 0, 528F, mPixel3Xl, brandGoogle, colorBlack, ram4, storage64))
         productStockDao.save(ProductStock(null, 5, 0, 538F, mPixel3Xl, brandGoogle, colorWhite, ram4, storage64))
@@ -162,7 +162,7 @@ class ProductServiceImpl : IProductService {
 
         val mMiA3 = Model(null, "Mi A3",
                 "Finding the best price for the Xiaomi Mi A3 is no easy task. Here you will find where to buy the Xiaomi Mi A3 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
-                "https://cdn.phonehouse.es/res/products-image/3/8/5/5/4/385547-2232226.jpg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/mi-3a.jpg")
         modelDao.save(mMiA3)
         productStockDao.save(ProductStock(null, 5, 0, 249F, mMiA3, brandXiaomi, colorBlack, ram4, storage64))
         productStockDao.save(ProductStock(null, 5, 0, 252F, mMiA3, brandXiaomi, colorWhite, ram4, storage64))
@@ -174,7 +174,7 @@ class ProductServiceImpl : IProductService {
 
         val mMi9T = Model(null, "Mi 9T",
                 "Finding the best price for the Xiaomi Mi 9T is no easy task. Here you will find where to buy the Xiaomi Mi 9T at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
-                "https://cdn.phonehouse.es/res/products-image/3/7/7/5/7/377575-2221824.jpg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/mi-9t.jpg")
         modelDao.save(mMi9T)
         productStockDao.save(ProductStock(null, 5, 0, 254F, mMi9T, brandXiaomi, colorBlack, ram6, storage64))
         productStockDao.save(ProductStock(null, 5, 0, 260F, mMi9T, brandXiaomi, colorRed, ram6, storage64))
@@ -186,7 +186,7 @@ class ProductServiceImpl : IProductService {
 
         val mPocophoneF1 = Model(null, "Pocophone F1",
                 "This time Xiaomi has established a new line to follow between high-end terminals. On this occasion he has chosen to do so with a new sub-brand: POCO, and his first terminal, the PocoPhone F1. As they say they have baptized it with the name of Pocophone because they have tried to create a mobile top but removing some elements that make the product more expensive.",
-                "https://cdn.phonehouse.es/res/product450/resource_1011260.jpg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/pocofone-f1.jpg")
         modelDao.save(mPocophoneF1)
         productStockDao.save(ProductStock(null, 5, 0, 329F, mPocophoneF1, brandXiaomi, colorBlack, ram6, storage64))
         productStockDao.save(ProductStock(null, 5, 0, 330F, mPocophoneF1, brandXiaomi, colorRed, ram6, storage64))
@@ -197,7 +197,7 @@ class ProductServiceImpl : IProductService {
 
         val mRedmiNote8Pro = Model(null, "Redmi Note 8 Pro",
                 "Finding the best price for the Xiaomi Redmi Note 8 Pro is no easy task. Here you will find where to buy the Xiaomi Redmi Note 8 Pro at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
-                "https://cdn.phonehouse.es/res/products-image/4/2/3/5/5/423559-2321066.jpg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/redmi-note-8-pro.jpg")
         modelDao.save(mRedmiNote8Pro)
         productStockDao.save(ProductStock(null, 5, 0, 215F, mRedmiNote8Pro, brandXiaomi, colorBlack, ram6, storage64))
         productStockDao.save(ProductStock(null, 5, 0, 209F, mRedmiNote8Pro, brandXiaomi, colorGreen, ram6, storage64))
@@ -208,14 +208,14 @@ class ProductServiceImpl : IProductService {
 
         val mRogPhone2 = Model(null, "ROG Phone 2",
                 "Finding the best price for the Asus ROG Phone 2 is no easy task. Here you will find where to buy the Asus ROG Phone 2 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
-                "https://cdn.phonehouse.es/res/products-image/3/4/6/5/3/346535-0.jpg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/rog-phone-2.jpg")
         modelDao.save(mRogPhone2)
         productStockDao.save(ProductStock(null, 5, 0, 852F, mRogPhone2, brandAsus, colorGray, ram8, storage128))
 
 
         val mIphoneX = Model(null, "Iphone X",
                 "Finding the best price for the Apple iPhone X is no easy task. Here you will find where to buy the Apple iPhone X at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
-                "https://cdn.phonehouse.es/res/product450/resource_350051.jpg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/iphone-x.jpg")
         modelDao.save(mIphoneX)
         productStockDao.save(ProductStock(null, 5, 0, 930F, mIphoneX, brandApple, colorSilver, ram3, storage64))
         productStockDao.save(ProductStock(null, 5, 0, 939F, mIphoneX, brandApple, colorGray, ram3, storage64))
@@ -224,7 +224,7 @@ class ProductServiceImpl : IProductService {
 
         val mIphone11 = Model(null, "IPhone 11",
                 "Finding the best price for the Apple iPhone 11 is no easy task. Here you will find where to buy the Apple iPhone 11 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
-                "https://cdn-files.kimovil.com/phone_front/0003/47/thumb_246000_phone_front_big.jpeg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/iphone-11.jpeg")
         modelDao.save(mIphone11)
         productStockDao.save(ProductStock(null, 5, 0, 797F, mIphone11, brandApple, colorRed, ram4, storage64))
         productStockDao.save(ProductStock(null, 5, 0, 796F, mIphone11, brandApple, colorGreen, ram4, storage64))
@@ -246,24 +246,24 @@ class ProductServiceImpl : IProductService {
 
         val mGalaxyS10 = Model(null, "Galaxy S10",
                 "Finding the best price for the Samsung Galaxy S10 is no easy task. Here you will find where to buy the Samsung Galaxy S10 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
-                "https://cdn.phonehouse.es/res/product450/resource_1477411.jpg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/galaxy-s10.jpg")
         modelDao.save(mGalaxyS10)
         productStockDao.save(ProductStock(null, 5, 0, 1260F, mGalaxyS10, brandSamsung, colorSilver, ram8, storage512))
 
         val mGalaxyA70 = Model(null, "Galaxy A70",
                 "Finding the best price for the Samsung Galaxy A70 is no easy task. Here you will find where to buy the Samsung Galaxy A70 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
-                "https://cdn.phonehouse.es/res/product450/resource_1891171.jpg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/galaxy-a70.jpg")
         modelDao.save(mGalaxyA70)
         productStockDao.save(ProductStock(null, 5, 0, 382F, mGalaxyA70, brandSamsung, colorBlue, ram8, storage128))
 
         val m1S = Model(null, "1S",
                 "Finding the best price for the Alcatel 1S is no easy task. Here you will find where to buy the Alcatel 1S at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
-                "https://cdn.phonehouse.es/res/product450/resource_1764921.jpg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/1s.jpg")
         modelDao.save(m1S)
         productStockDao.save(ProductStock(null, 5, 0, 360F, m1S, brandAlcatel, colorBlue, ram3, storage32))
     }
 //
-//        val phone6 = ProductStock(null, "Alcatel", "3", "https://cdn.phonehouse.es/res/product450/resource_364555.jpg", "Finding the best price for the Alcatel 3 (2019) is no easy task. Here you will find where to buy the Alcatel 3 (2019) at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price", listOf(), listOf())
+//        val phone6 = ProductStock(null, "Alcatel", "3", "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/alcatel-3.jpg", "Finding the best price for the Alcatel 3 (2019) is no easy task. Here you will find where to buy the Alcatel 3 (2019) at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price", listOf(), listOf())
 //        phoneDao.save(phone6)
 //        val version12 = VersionPhone(null, 138F, 3, 32, phone6)
 //        val version13 = VersionPhone(null, 161F, 4, 64, phone6)
@@ -274,7 +274,7 @@ class ProductServiceImpl : IProductService {
 //        colorPhoneDao.save(color20)
 //        colorPhoneDao.save(color21)
 //
-//        val phone7 = ProductStock(null, "Motorola", "Moto G7 Plus", "https://cdn.phonehouse.es/res/viewtwo450/resource_1964334.jpg", "Finding the best price for the Motorola Moto G7 Plus is no easy task. Here you will find where to buy the Motorola Moto G7 Plus at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price", listOf(), listOf())
+//        val phone7 = ProductStock(null, "Motorola", "Moto G7 Plus", "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/moto-g7-plus.jpg", "Finding the best price for the Motorola Moto G7 Plus is no easy task. Here you will find where to buy the Motorola Moto G7 Plus at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price", listOf(), listOf())
 //        phoneDao.save(phone7)
 //        val version14 = VersionPhone(null, 216F, 4, 64, phone7)
 //        versionPhoneDao.save(version14)
@@ -283,7 +283,7 @@ class ProductServiceImpl : IProductService {
 //        colorPhoneDao.save(color22)
 //        colorPhoneDao.save(color23)
 //
-//        val phone8 = ProductStock(null, "Motorola", "One Vision", "https://cdn.phonehouse.es/res/products-image/3/8/3/0/5/383058-2228084.jpg", "Finding the best price for the Motorola One Vision is no easy task. Here you will find where to buy the Motorola One Vision at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price", listOf(), listOf())
+//        val phone8 = ProductStock(null, "Motorola", "One Vision", "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/one-vision.jpg", "Finding the best price for the Motorola One Vision is no easy task. Here you will find where to buy the Motorola One Vision at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price", listOf(), listOf())
 //        phoneDao.save(phone8)
 //        val version15 = VersionPhone(null, 199F, 4, 64, phone8)
 //        versionPhoneDao.save(version15)
@@ -292,7 +292,7 @@ class ProductServiceImpl : IProductService {
 //        colorPhoneDao.save(color24)
 //        colorPhoneDao.save(color25)
 //
-//        val phone9 = ProductStock(null, "Sharp", "Aquos C10", "https://cdn-files.kimovil.com/phone_front/0002/56/thumb_155997_phone_front_big.jpeg", "Finding the best price for the Sharp Aquos C10 is no easy task. Here you will find where to buy the Sharp Aquos C10 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price", listOf(), listOf())
+//        val phone9 = ProductStock(null, "Sharp", "Aquos C10", "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/aquos-c10.jpeg", "Finding the best price for the Sharp Aquos C10 is no easy task. Here you will find where to buy the Sharp Aquos C10 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price", listOf(), listOf())
 //        phoneDao.save(phone9)
 //        val version16 = VersionPhone(null, 100F, 4, 64, phone9)
 //        versionPhoneDao.save(version16)
@@ -301,7 +301,7 @@ class ProductServiceImpl : IProductService {
 //        colorPhoneDao.save(color26)
 //        colorPhoneDao.save(color27)
 //
-//        val phone10 = ProductStock(null, "Sharp", "Aquos S3", "https://cdn-files.kimovil.com/phone_front/0002/33/thumb_132829_phone_front_big.jpeg", "Finding the best price for the Sharp Aquos S3 is no easy task. Here you will find where to buy the Sharp Aquos S3 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price", listOf(), listOf())
+//        val phone10 = ProductStock(null, "Sharp", "Aquos S3", "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/aquos-s3.jpeg", "Finding the best price for the Sharp Aquos S3 is no easy task. Here you will find where to buy the Sharp Aquos S3 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price", listOf(), listOf())
 //        phoneDao.save(phone10)
 //        val version17 = VersionPhone(null, 273F, 4, 64, phone10)
 //        val version18 = VersionPhone(null, 340F, 6, 128, phone10)
