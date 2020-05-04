@@ -22,4 +22,5 @@ interface IProductStockDao : CrudRepository<ProductStock, Int> {
     fun findAllProductsOfThisModelWithStockOrderedByPrice(model: Int): MutableList<ProductStock>
 
 
+    //SELECT id, name FROM creditasbackendbdv2.model where name LIKE '%phone%';
 }

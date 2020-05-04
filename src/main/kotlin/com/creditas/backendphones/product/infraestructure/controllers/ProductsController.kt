@@ -40,13 +40,4 @@ class ProductsController {
         LOGGER.warn(string)
         return productService.productsFilteredByKeywords(string)
     }
-
-    //http://localhost:8080/api/v1/products/exampledata
-    @GetMapping("/exampledata")
-    fun setExampleData(): ResponseEntity<Unit> {
-        LOGGER.warn("Begin Phones exampledata")
-        productService.setBdPhonesExample()
-        userService.setBdUsersExample()
-        return ResponseEntity(HttpStatus.OK)
-    }
 }
