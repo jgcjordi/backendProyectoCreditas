@@ -16,6 +16,6 @@ data class ShopUser(
         var password: String?,
 
         @JsonBackReference(value = "invoice-user")
-        @OneToMany(mappedBy = "user", cascade = [(CascadeType.ALL)], orphanRemoval = true)
+        @OneToMany(mappedBy = "shopUser", cascade = [(CascadeType.ALL)], orphanRemoval = true)
         var invoices: List<Invoice> = listOf()
 )
