@@ -4,6 +4,7 @@ import com.creditas.backendphones.product.domain.dao.*
 import com.creditas.backendphones.product.domain.entities.*
 import org.apache.juli.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service

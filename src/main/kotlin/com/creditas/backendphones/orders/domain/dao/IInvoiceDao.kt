@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository
 
 interface IInvoiceDao: CrudRepository<Invoice, Int> {
 
-    @Query("SELECT * FROM creditasbackendbdv2.invoice where user_id = ?1 order by data desc limit 1",
+    @Query("SELECT * FROM invoice where user_id = ?1 order by data desc limit 1",
             nativeQuery = true)
     fun findLastProductPurchasedByThisUserId(id: Int): Invoice
 
