@@ -1,7 +1,7 @@
 package com.creditas.backendphones.orders.domain.entities
 
 
-import com.creditas.backendphones.user.domain.entities.User
+import com.creditas.backendphones.user.domain.entities.ShopUser
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import java.time.LocalDateTime
 import javax.persistence.*
@@ -16,7 +16,7 @@ data class Invoice(
         @JsonManagedReference(value = "invoice-user")
         @ManyToOne
         @JoinColumn
-        var user: User,
+        var shopUser: ShopUser,
 
         val data: LocalDateTime = LocalDateTime.now(),
 

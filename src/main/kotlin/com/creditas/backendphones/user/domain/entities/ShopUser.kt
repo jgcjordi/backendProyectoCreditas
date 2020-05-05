@@ -7,7 +7,7 @@ import javax.persistence.*
 
 @Entity
 @Table
-data class User(
+data class ShopUser(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Int?,

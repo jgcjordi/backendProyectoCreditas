@@ -3,7 +3,7 @@ package com.creditas.backendphones.user.infraestructure.controllers
 
 import com.creditas.backendphones.orders.services.IOrderService
 import com.creditas.backendphones.product.domain.entities.ProductStock
-import com.creditas.backendphones.user.domain.entities.User
+import com.creditas.backendphones.user.domain.entities.ShopUser
 import com.creditas.backendphones.user.services.IUserService
 import org.apache.juli.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,10 +26,10 @@ class UserController {
 
     //http://localhost:8080/api/v1/user/login
     @PostMapping("/login")
-    fun login(@RequestBody user:User, request: HttpServletRequest): ResponseEntity<User> {
-        return if (userService.ifUserExist(user.email!!, user.password!!)) {
-            val userBD = userService.getUserByEmail(user.email)
-            val token:String = userService.getJWTToken(user.email, request)
+    fun login(@RequestBody shopUser:ShopUser, request: HttpServletRequest): ResponseEntity<ShopUser> {
+        return if (userService.ifUserExist(shopUser.email!!, shopUser.password!!)) {
+            val userBD = userService.getUserByEmail(shopUser.email)
+            val token:String = userService.getJWTToken(shopUser.email, request)
             userBD.password = token
             ResponseEntity(userBD, HttpStatus.OK)
         } else {
@@ -39,9 +39,9 @@ class UserController {
 
     //http://localhost:8080/api/v1/user/singIn
     @PostMapping("/singIn")
-    fun singIn(@RequestBody user:User, request: HttpServletRequest): ResponseEntity<User> {
-        return if (!userService.ifEmailExist(user.email!!)) {
-            val userBD = userService.registryNewUser(user)
+    fun singIn(@RequestBody shopUser:ShopUser, request: HttpServletRequest): ResponseEntity<ShopUser> {
+        return if (!userService.ifEmailExist(shopUser.email!!)) {
+            val userBD = userService.registryNewUser(shopUser)
             val token:String = userService.getJWTToken(userBD.email!!, request)
             userBD.password = token
             ResponseEntity(userBD, HttpStatus.OK)

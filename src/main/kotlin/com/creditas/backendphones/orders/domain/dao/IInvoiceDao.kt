@@ -1,8 +1,6 @@
 package com.creditas.backendphones.orders.domain.dao
 
 import com.creditas.backendphones.orders.domain.entities.Invoice
-import com.creditas.backendphones.product.domain.entities.ProductStock
-import com.creditas.backendphones.user.domain.entities.User
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.CrudRepository
 

@@ -5,10 +5,8 @@ import com.creditas.backendphones.orders.domain.dao.IInvoiceDao
 import com.creditas.backendphones.orders.domain.dao.IOrderItemDao
 import com.creditas.backendphones.orders.domain.entities.Invoice
 import com.creditas.backendphones.orders.domain.entities.OrderItem
-import com.creditas.backendphones.product.domain.dao.IProductStockDao
 import com.creditas.backendphones.product.domain.entities.ProductStock
-import com.creditas.backendphones.user.domain.dao.IUserDao
-import com.creditas.backendphones.user.domain.entities.User
+import com.creditas.backendphones.user.domain.entities.ShopUser
 import org.apache.commons.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
@@ -25,19 +23,19 @@ class OrderServiceImpl : IOrderService {
 
     private val LOGGER = LogFactory.getLog("OrderServiceImpl.class")
 
-    override fun purchaseProduct(user: User, productStock: ProductStock): Boolean {
-        val invoice = invoiceDao.save(Invoice(null, user))
+    override fun purchaseProduct(shopUser: ShopUser, productStock: ProductStock): Boolean {
+        val invoice = invoiceDao.save(Invoice(null, shopUser))
         orderItemDao.save(OrderItem(null, productStock, invoice))
         return true
     }
 
-    override fun getLastInvoiceOfUser(user: User): Invoice {
-        return invoiceDao.findLastProductPurchasedByThisUserId(user.id!!)
+    override fun getLastInvoiceOfUser(shopUser: ShopUser): Invoice {
+        return invoiceDao.findLastProductPurchasedByThisUserId(shopUser.id!!)
     }
 
-    override fun hasLastInvoiceOfUser(user: User): Boolean {
+    override fun hasLastInvoiceOfUser(shopUser: ShopUser): Boolean {
         return try {
-            invoiceDao.findLastProductPurchasedByThisUserId(user.id!!)
+            invoiceDao.findLastProductPurchasedByThisUserId(shopUser.id!!)
             true
         }catch (e: EmptyResultDataAccessException){
             false

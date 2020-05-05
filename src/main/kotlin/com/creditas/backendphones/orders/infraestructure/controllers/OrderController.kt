@@ -3,9 +3,7 @@ package com.creditas.backendphones.orders.infraestructure.controllers
 
 import com.creditas.backendphones.orders.domain.entities.UserProductIds
 import com.creditas.backendphones.orders.services.IOrderService
-import com.creditas.backendphones.product.domain.entities.ProductStock
 import com.creditas.backendphones.product.services.IProductService
-import com.creditas.backendphones.user.domain.entities.User
 import com.creditas.backendphones.user.services.IUserService
 import org.apache.juli.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired

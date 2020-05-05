@@ -1,9 +1,7 @@
 package com.creditas.backendphones.user.services
 
-import com.creditas.backendphones.product.domain.entities.ProductStock
-import com.creditas.backendphones.user.domain.entities.User
+import com.creditas.backendphones.user.domain.entities.ShopUser
 import com.creditas.backendphones.user.domain.dao.IUserDao
-import com.creditas.backendphones.user.infraestructure.security.JWTAuthorizationFilter
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.apache.commons.logging.LogFactory
@@ -43,15 +41,15 @@ class UserServiceImpl : IUserService {
         return userDao.existsByEmail(email)
     }
 
-    override fun registryNewUser(user:User): User {
-        userDao.save(user)
-        return userDao.findByEmail(user.email!!)
+    override fun registryNewUser(shopUser:ShopUser): ShopUser {
+        userDao.save(shopUser)
+        return userDao.findByEmail(shopUser.email!!)
     }
 
 
-    override fun getUserByEmail(email:String):User = userDao.findByEmail(email)
+    override fun getUserByEmail(email:String):ShopUser = userDao.findByEmail(email)
 
-    override fun getUserById(id: Int): User = userDao.findById(id).get()
+    override fun getUserById(id: Int): ShopUser = userDao.findById(id).get()
 
     override fun getJWTToken(email: String, request: HttpServletRequest): String {
         val grantedAuthorities:List<GrantedAuthority> = commaSeparatedStringToAuthorityList("ROLE_USER")
@@ -81,17 +79,17 @@ class UserServiceImpl : IUserService {
                 .parseClaimsJws(jwtToken).body.subject as String
     }
 
-    override fun getUserFromBearer(bearer: String): User {
+    override fun getUserFromBearer(bearer: String): ShopUser {
         return getUserByEmail(getEmailUserFromBearer(bearer))
     }
 
 
     override fun setBdUsersExample() {
-        val user1 = User(null, "jgc.jordi@gmail.com", "Jordi Gomis", "password1")
+        val user1 = ShopUser(null, "jgc.jordi@gmail.com", "Jordi Gomis", "password1")
         userDao.save(user1)
-        val user2 = User(null, "kike@gmail.com", "Kike Gomis", "password2")
+        val user2 = ShopUser(null, "kike@gmail.com", "Kike Gomis", "password2")
         userDao.save(user2)
-        val user3 = User(null, "neus@gmail.com", "Neus Gomis", "password3")
+        val user3 = ShopUser(null, "neus@gmail.com", "Neus Gomis", "password3")
         userDao.save(user3)
     }
 
