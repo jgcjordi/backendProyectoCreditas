@@ -22,6 +22,10 @@ class ProductsController {
     @Autowired
     private lateinit var userService: IUserService
 
+
+    @GetMapping
+    fun isWorking() = "I am working"
+
     //http://localhost:8080/api/v1/products/allCheapestModelsWithStockPaged/0
     @GetMapping("/allCheapestModelsWithStockPaged/{page}")
     fun allCheapestModelsWithStockPaged(@PathVariable page: Int): ResponseEntity<Page<ProductStock>> {
