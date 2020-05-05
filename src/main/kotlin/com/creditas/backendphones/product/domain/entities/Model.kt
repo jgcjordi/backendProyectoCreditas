@@ -1,8 +1,8 @@
 package com.creditas.backendphones.product.domain.entities
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import org.springframework.transaction.annotation.Transactional
 import javax.persistence.*
-import javax.transaction.Transactional
 
 @Entity
 @Table
