@@ -235,7 +235,7 @@ class ProductServiceImpl : IProductService {
 
         val mIphone8 = Model(null, "Iphone 8",
                 "Finding the best price for the Apple iPhone 8 is no easy task. Here you will find where to buy the Apple iPhone 8 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
-                "https://cdn.phonehouse.es/res/product200/resource_347644.jpg")
+                "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/iphone-8.jpg")
         modelDao.save(mIphone8)
         productStockDao.save(ProductStock(null, 5, 0, 486F, mIphone8, brandApple, colorSilver, ram2, storage64))
         productStockDao.save(ProductStock(null, 5, 0, 487F, mIphone8, brandApple, colorGray, ram2, storage64))
@@ -262,7 +262,7 @@ class ProductServiceImpl : IProductService {
         modelDao.save(m1S)
         productStockDao.save(ProductStock(null, 5, 0, 360F, m1S, brandAlcatel, colorBlue, ram3, storage32))
     }
-//
+
 //        val phone6 = ProductStock(null, "Alcatel", "3", "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/alcatel-3.jpg", "Finding the best price for the Alcatel 3 (2019) is no easy task. Here you will find where to buy the Alcatel 3 (2019) at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price", listOf(), listOf())
 //        phoneDao.save(phone6)
 //        val version12 = VersionPhone(null, 138F, 3, 32, phone6)
@@ -313,10 +313,5 @@ class ProductServiceImpl : IProductService {
 //        colorPhoneDao.save(color28)
 //        colorPhoneDao.save(color29)
 //        colorPhoneDao.save(color30)
-//
-
-
-//    }
-
 
 }
