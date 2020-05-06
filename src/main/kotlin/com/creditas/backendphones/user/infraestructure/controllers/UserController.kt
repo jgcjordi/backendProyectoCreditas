@@ -9,6 +9,7 @@ import org.apache.juli.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletRequest
 
@@ -65,6 +66,7 @@ class UserController {
 
     //http://localhost:8080/api/v1/user/logged/getLastPurchase
     @GetMapping("/logged/getLastPurchase")
+    @Transactional
     fun getLastPurchase(@RequestHeader(value = "Authorization", defaultValue = "") bearer: String):ResponseEntity<ProductStock>{
         LOGGER.warn(bearer)
         return if(orderService.hasLastInvoiceOfUser(userService.getUserFromBearer(bearer))){

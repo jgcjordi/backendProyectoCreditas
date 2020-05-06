@@ -4,10 +4,10 @@ import com.creditas.backendphones.product.domain.dao.*
 import com.creditas.backendphones.product.domain.entities.*
 import org.apache.juli.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 
 @Service
@@ -28,18 +28,22 @@ class ProductServiceImpl : IProductService {
 
     private val LOGGER = LogFactory.getLog("PhoneServiceImpl.class")
 
+    @Transactional
     override fun getAllCheapestModelsWithStock():  MutableList<ProductStock> {
         return productStockDao.findAllCheapestModelsWithStock()
     }
 
+    @Transactional
     override fun getAllCheapestModelsWithStockPaged(page: Int): Page<ProductStock> {
         return productStockDao.findAllCheapestModelsWithStockPaged(PageRequest.of(page, 6))
     }
 
+    @Transactional
     override fun getAllProductsOfThisModelWithStockOrderedByPrice(model: Int): MutableList<ProductStock> {
         return productStockDao.findAllProductsOfThisModelWithStockOrderedByPrice(model)
     }
 
+    @Transactional
     override fun getStockProductById(id: Int): ProductStock {
         return productStockDao.findById(id).get()
     }
@@ -48,6 +52,7 @@ class ProductServiceImpl : IProductService {
         productStockDao.save(productStock)
     }
 
+    @Transactional
     override fun productsFilteredByKeywords(stringFilter: String): MutableList<ProductStock> {
         val products = getAllCheapestModelsWithStock()
         val listKeywords: MutableList<String> = stringFilter.split(" ").toMutableList()
@@ -83,6 +88,8 @@ class ProductServiceImpl : IProductService {
     }
 
     override fun setBdPhonesExample() {
+        val stockProduct = 2
+
         val brandGoogle = Brand(null, "Google")
         brandDao.save(brandGoogle)
         val brandXiaomi = Brand(null, "Xiaomi")
@@ -147,121 +154,121 @@ class ProductServiceImpl : IProductService {
                 "Finding the best price for the Google Pixel 3 is no easy task. Here you will find where to buy the Google Pixel 3 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/pixel-3.jpg")
         modelDao.save(mPixel3)
-        productStockDao.save(ProductStock(null, 5, 0, 504F, mPixel3, brandGoogle, colorBlack, ram4, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 514F, mPixel3, brandGoogle, colorPink, ram4, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 812F, mPixel3, brandGoogle, colorBlack, ram4, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 822F, mPixel3, brandGoogle, colorPink, ram4, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 504F, mPixel3, brandGoogle, colorBlack, ram4, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 514F, mPixel3, brandGoogle, colorPink, ram4, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 812F, mPixel3, brandGoogle, colorBlack, ram4, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 822F, mPixel3, brandGoogle, colorPink, ram4, storage128))
 
         val mPixel3Xl = Model(null, "Pixel 3 XL",
                 "Finding the best price for the Google Pixel 3 XL is no easy task. Here you will find where to buy the Google Pixel 3 XL at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/pixel-3-xl.jpg")
         modelDao.save(mPixel3Xl)
-        productStockDao.save(ProductStock(null, 5, 0, 528F, mPixel3Xl, brandGoogle, colorBlack, ram4, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 538F, mPixel3Xl, brandGoogle, colorWhite, ram4, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 832F, mPixel3Xl, brandGoogle, colorBlack, ram4, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 838F, mPixel3Xl, brandGoogle, colorWhite, ram4, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 528F, mPixel3Xl, brandGoogle, colorBlack, ram4, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 538F, mPixel3Xl, brandGoogle, colorWhite, ram4, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 832F, mPixel3Xl, brandGoogle, colorBlack, ram4, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 838F, mPixel3Xl, brandGoogle, colorWhite, ram4, storage128))
 
         val mMiA3 = Model(null, "Mi A3",
                 "Finding the best price for the Xiaomi Mi A3 is no easy task. Here you will find where to buy the Xiaomi Mi A3 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/mi-3a.jpg")
         modelDao.save(mMiA3)
-        productStockDao.save(ProductStock(null, 5, 0, 249F, mMiA3, brandXiaomi, colorBlack, ram4, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 252F, mMiA3, brandXiaomi, colorWhite, ram4, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 240F, mMiA3, brandXiaomi, colorBlue, ram4, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 280F, mMiA3, brandXiaomi, colorBlack, ram4, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 288F, mMiA3, brandXiaomi, colorWhite, ram4, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 281F, mMiA3, brandXiaomi, colorBlue, ram4, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 249F, mMiA3, brandXiaomi, colorBlack, ram4, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 252F, mMiA3, brandXiaomi, colorWhite, ram4, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 240F, mMiA3, brandXiaomi, colorBlue, ram4, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 280F, mMiA3, brandXiaomi, colorBlack, ram4, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 288F, mMiA3, brandXiaomi, colorWhite, ram4, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 281F, mMiA3, brandXiaomi, colorBlue, ram4, storage128))
 
 
         val mMi9T = Model(null, "Mi 9T",
                 "Finding the best price for the Xiaomi Mi 9T is no easy task. Here you will find where to buy the Xiaomi Mi 9T at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/mi-9t.jpg")
         modelDao.save(mMi9T)
-        productStockDao.save(ProductStock(null, 5, 0, 254F, mMi9T, brandXiaomi, colorBlack, ram6, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 260F, mMi9T, brandXiaomi, colorRed, ram6, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 255F, mMi9T, brandXiaomi, colorBlue, ram6, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 282F, mMi9T, brandXiaomi, colorBlack, ram6, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 288F, mMi9T, brandXiaomi, colorRed, ram6, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 281F, mMi9T, brandXiaomi, colorBlue, ram6, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 254F, mMi9T, brandXiaomi, colorBlack, ram6, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 260F, mMi9T, brandXiaomi, colorRed, ram6, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 255F, mMi9T, brandXiaomi, colorBlue, ram6, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 282F, mMi9T, brandXiaomi, colorBlack, ram6, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 288F, mMi9T, brandXiaomi, colorRed, ram6, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 281F, mMi9T, brandXiaomi, colorBlue, ram6, storage128))
 
 
         val mPocophoneF1 = Model(null, "Pocophone F1",
                 "This time Xiaomi has established a new line to follow between high-end terminals. On this occasion he has chosen to do so with a new sub-brand: POCO, and his first terminal, the PocoPhone F1. As they say they have baptized it with the name of Pocophone because they have tried to create a mobile top but removing some elements that make the product more expensive.",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/pocofone-f1.jpg")
         modelDao.save(mPocophoneF1)
-        productStockDao.save(ProductStock(null, 5, 0, 329F, mPocophoneF1, brandXiaomi, colorBlack, ram6, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 330F, mPocophoneF1, brandXiaomi, colorRed, ram6, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 335F, mPocophoneF1, brandXiaomi, colorBlue, ram6, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 346F, mPocophoneF1, brandXiaomi, colorBlack, ram6, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 350F, mPocophoneF1, brandXiaomi, colorRed, ram6, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 368F, mPocophoneF1, brandXiaomi, colorBlue, ram6, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 329F, mPocophoneF1, brandXiaomi, colorBlack, ram6, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 330F, mPocophoneF1, brandXiaomi, colorRed, ram6, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 335F, mPocophoneF1, brandXiaomi, colorBlue, ram6, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 346F, mPocophoneF1, brandXiaomi, colorBlack, ram6, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 350F, mPocophoneF1, brandXiaomi, colorRed, ram6, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 368F, mPocophoneF1, brandXiaomi, colorBlue, ram6, storage128))
 
         val mRedmiNote8Pro = Model(null, "Redmi Note 8 Pro",
                 "Finding the best price for the Xiaomi Redmi Note 8 Pro is no easy task. Here you will find where to buy the Xiaomi Redmi Note 8 Pro at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/redmi-note-8-pro.jpg")
         modelDao.save(mRedmiNote8Pro)
-        productStockDao.save(ProductStock(null, 5, 0, 215F, mRedmiNote8Pro, brandXiaomi, colorBlack, ram6, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 209F, mRedmiNote8Pro, brandXiaomi, colorGreen, ram6, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 235F, mRedmiNote8Pro, brandXiaomi, colorWhite, ram6, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 220F, mRedmiNote8Pro, brandXiaomi, colorBlack, ram6, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 228F, mRedmiNote8Pro, brandXiaomi, colorGreen, ram6, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 248F, mRedmiNote8Pro, brandXiaomi, colorWhite, ram6, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 215F, mRedmiNote8Pro, brandXiaomi, colorBlack, ram6, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 209F, mRedmiNote8Pro, brandXiaomi, colorGreen, ram6, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 235F, mRedmiNote8Pro, brandXiaomi, colorWhite, ram6, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 220F, mRedmiNote8Pro, brandXiaomi, colorBlack, ram6, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 228F, mRedmiNote8Pro, brandXiaomi, colorGreen, ram6, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 248F, mRedmiNote8Pro, brandXiaomi, colorWhite, ram6, storage128))
 
         val mRogPhone2 = Model(null, "ROG Phone 2",
                 "Finding the best price for the Asus ROG Phone 2 is no easy task. Here you will find where to buy the Asus ROG Phone 2 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/rog-phone-2.jpg")
         modelDao.save(mRogPhone2)
-        productStockDao.save(ProductStock(null, 5, 0, 852F, mRogPhone2, brandAsus, colorGray, ram8, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 852F, mRogPhone2, brandAsus, colorGray, ram8, storage128))
 
 
         val mIphoneX = Model(null, "Iphone X",
                 "Finding the best price for the Apple iPhone X is no easy task. Here you will find where to buy the Apple iPhone X at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/iphone-x.jpg")
         modelDao.save(mIphoneX)
-        productStockDao.save(ProductStock(null, 5, 0, 930F, mIphoneX, brandApple, colorSilver, ram3, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 939F, mIphoneX, brandApple, colorGray, ram3, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 1129F, mIphoneX, brandApple, colorSilver, ram3, storage256))
-        productStockDao.save(ProductStock(null, 5, 0, 1130F, mIphoneX, brandApple, colorGray, ram3, storage256))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 930F, mIphoneX, brandApple, colorSilver, ram3, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 939F, mIphoneX, brandApple, colorGray, ram3, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 1129F, mIphoneX, brandApple, colorSilver, ram3, storage256))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 1130F, mIphoneX, brandApple, colorGray, ram3, storage256))
 
         val mIphone11 = Model(null, "IPhone 11",
                 "Finding the best price for the Apple iPhone 11 is no easy task. Here you will find where to buy the Apple iPhone 11 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/iphone-11.jpeg")
         modelDao.save(mIphone11)
-        productStockDao.save(ProductStock(null, 5, 0, 797F, mIphone11, brandApple, colorRed, ram4, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 796F, mIphone11, brandApple, colorGreen, ram4, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 799F, mIphone11, brandApple, colorPink, ram4, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 798F, mIphone11, brandApple, colorYellow, ram4, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 826F, mIphone11, brandApple, colorYellow, ram4, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 979F, mIphone11, brandApple, colorYellow, ram4, storage256))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 797F, mIphone11, brandApple, colorRed, ram4, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 796F, mIphone11, brandApple, colorGreen, ram4, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 799F, mIphone11, brandApple, colorPink, ram4, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 798F, mIphone11, brandApple, colorYellow, ram4, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 826F, mIphone11, brandApple, colorYellow, ram4, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 979F, mIphone11, brandApple, colorYellow, ram4, storage256))
 
         val mIphone8 = Model(null, "Iphone 8",
                 "Finding the best price for the Apple iPhone 8 is no easy task. Here you will find where to buy the Apple iPhone 8 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/iphone-8.jpg")
         modelDao.save(mIphone8)
-        productStockDao.save(ProductStock(null, 5, 0, 486F, mIphone8, brandApple, colorSilver, ram2, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 487F, mIphone8, brandApple, colorGray, ram2, storage64))
-        productStockDao.save(ProductStock(null, 5, 0, 590F, mIphone8, brandApple, colorSilver, ram2, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 594F, mIphone8, brandApple, colorGray, ram2, storage128))
-        productStockDao.save(ProductStock(null, 5, 0, 640F, mIphone8, brandApple, colorSilver, ram2, storage256))
-        productStockDao.save(ProductStock(null, 5, 0, 643F, mIphone8, brandApple, colorGray, ram2, storage256))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 486F, mIphone8, brandApple, colorSilver, ram2, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 487F, mIphone8, brandApple, colorGray, ram2, storage64))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 590F, mIphone8, brandApple, colorSilver, ram2, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 594F, mIphone8, brandApple, colorGray, ram2, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 640F, mIphone8, brandApple, colorSilver, ram2, storage256))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 643F, mIphone8, brandApple, colorGray, ram2, storage256))
 
         val mGalaxyS10 = Model(null, "Galaxy S10",
                 "Finding the best price for the Samsung Galaxy S10 is no easy task. Here you will find where to buy the Samsung Galaxy S10 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/galaxy-s10.jpg")
         modelDao.save(mGalaxyS10)
-        productStockDao.save(ProductStock(null, 5, 0, 1260F, mGalaxyS10, brandSamsung, colorSilver, ram8, storage512))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 1260F, mGalaxyS10, brandSamsung, colorSilver, ram8, storage512))
 
         val mGalaxyA70 = Model(null, "Galaxy A70",
                 "Finding the best price for the Samsung Galaxy A70 is no easy task. Here you will find where to buy the Samsung Galaxy A70 at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/galaxy-a70.jpg")
         modelDao.save(mGalaxyA70)
-        productStockDao.save(ProductStock(null, 5, 0, 382F, mGalaxyA70, brandSamsung, colorBlue, ram8, storage128))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 382F, mGalaxyA70, brandSamsung, colorBlue, ram8, storage128))
 
         val m1S = Model(null, "1S",
                 "Finding the best price for the Alcatel 1S is no easy task. Here you will find where to buy the Alcatel 1S at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price",
                 "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/1s.jpg")
         modelDao.save(m1S)
-        productStockDao.save(ProductStock(null, 5, 0, 360F, m1S, brandAlcatel, colorBlue, ram3, storage32))
+        productStockDao.save(ProductStock(null, stockProduct, 0, 360F, m1S, brandAlcatel, colorBlue, ram3, storage32))
     }
 
 //        val phone6 = ProductStock(null, "Alcatel", "3", "https://raw.githubusercontent.com/jgcjordi/backendProyectoCreditas/master/img-phones/alcatel-3.jpg", "Finding the best price for the Alcatel 3 (2019) is no easy task. Here you will find where to buy the Alcatel 3 (2019) at the best price. Prices are continuously tracked in over 140 stores so that you can find a reputable dealer with the best price", listOf(), listOf())

@@ -11,6 +11,7 @@ import org.apache.commons.logging.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 
 @Service
@@ -29,10 +30,12 @@ class OrderServiceImpl : IOrderService {
         return true
     }
 
+    @Transactional
     override fun getLastInvoiceOfUser(shopUser: ShopUser): Invoice {
         return invoiceDao.findLastProductPurchasedByThisUserId(shopUser.id!!)
     }
 
+    @Transactional
     override fun hasLastInvoiceOfUser(shopUser: ShopUser): Boolean {
         return try {
             invoiceDao.findLastProductPurchasedByThisUserId(shopUser.id!!)
